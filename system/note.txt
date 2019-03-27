@@ -1,0 +1,13 @@
+A FAIRE: 
+
+- Commenter tout le code (en anglais)
+
+- Ajouter des news
+
+- Rajouter des categories
+
+- Contraindre les Forms pour ne pas rentrer importe quoi (ex : editimage INT /no STING) 
+
+- Ajouter des users (vérification par mail)
+- Contraindre le mail à être un vrai mail
+- Contraindre le password à certains caractères

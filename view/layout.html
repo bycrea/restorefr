@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="fr">
+<head>
+	{% block head %}
+	<meta charset="utf-8">
+	<meta name="language" content="français">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://www.restorefr.com">
+	<meta property="og:site_name" content="Re-STORE">
+	<meta property="og:image" content="assets/logos/logo_restore.png">
+	<link rel="shortcut icon" href="assets/logos/favicon_restore.ico"/>
+
+	<title>{{ title }}</title>
+	<!-- Bootstrap core CSS -->	
+	<link href="assets/css/bootstrap.css" rel="stylesheet">
+	<!-- <link href="assets/css/style.css" rel="stylesheet"> -->
+	<!-- Custom styles for this template -->
+	<link href="assets/css/album.css" rel="stylesheet">
+	{% endblock %}
+</head>
+<body>
+	<header>
+	{% block header %}
+		<div class="collapse bg-restore-y" id="navbarHeader">
+			<div class="container">
+				<div class="row justify-content-between">
+					<div class="col-sm-12 col-lg-8 py-4">
+						<h5 class="text-muted">Re-STORE C'est quoi? C'est qui?</h5>
+						<p class="text-muted">Croyez-vous en la réincarnation ? Et bien chez Re-Store, on la provoque. <br>
+							Ici on offre une nouvelle vie aux objets et on allonge par la même occasion leur cycle de vie. Souvent voués à la déchetterie ces objets nous disent merci! <br>
+							Qui se cache derrière Re-Store ? Un bidouilleur amateur qui a décidé d'exprimer sa créativité dans le souci du réemploi et de valorisation des déchets. 
+						</p>
+					</div>
+					<div class="col-sm-12 col-lg-4 py-4 text-right">
+						<h4 class="text-muted">Contact</h4>
+						<ul class="list-unstyled">
+							<li><a href="https://www.facebook.com/restorefr/" class="text-muted" target="_blank">Facebook <img src="assets/rs/logo_fb.png" class="img-rs"></a></li>
+							<li><a href="https://www.instagram.com/restorefrance/" class="text-muted" target="_blank">Instagram <img src="assets/rs/logo_insta.png" class="img-rs"></a></li>
+							<li><a href="https://www.etsy.com/fr/shop/ReSTOREFR/" class="text-muted" target="_blank">Etsy <img src="assets/rs/logo_etsy.png" class="img-rs"></a></li>
+							<li><a href="#" class="text-muted">Email <img src="assets/rs/logo_mail.png" class="img-rs"></a></li>
+							<li><a href="#" class="text-muted">A propos...</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="navbar sticky-top navbar-dark bg-restore-b shadow-sm">
+			<div class="container d-flex justify-content-between flex-sm-wrap">
+				<a href="index.php" class="navbar-brand d-flex align-items-center">
+					<img src="assets/logos/logo_ban_on.png" alt="logo restore petit" width="120" class="">
+				</a>
+				<div class="row">
+					<div class="dropdown col-10">
+						<button class="btn btn-sm btn-outline-light dropdown-toggle mt-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							{{ creations }}
+						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" href="{{ ii }}home">Toutes</a>
+							{% for catg in catg_drop %}
+							<a class="dropdown-item" href="{{ ii }}home&catg={{ catg.id_catg |e }}">{{ catg.categorie |e }}</a>
+							{% endfor %}
+						</div>
+						<a href="#" class="btn btn-sm btn-outline-light mt-1">News</a>
+					</div>
+					<button class="navbar-toggler col-2" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	{% endblock %}
+	</header>
+
+	<main role="main">
+	{% block main %}	
+	{% endblock %}
+	</main>
+
+	{% block footer %}
+	<footer class="text-muted">
+		<div class="container">
+			<p class="float-right">
+				<a href="#" class="text-muted">Back to top</a>
+			</p>
+			<p class="font-weight-lighter">Webnoob <a href="index.php?p=login" class="text-muted">yoan despert</a> powered by Bootstrap.</p>
+		</div>
+	</footer>
+	{% endblock %}
+	{% block script %}
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="assets/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+	{% endblock %}
+</body>
+</html>

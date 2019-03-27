@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+{{ parent() }}
+<!-- CKEditor -->
+<script src="assets/ckeditor/ckeditor.js"></script>
+{% endblock %}
+
+{% block header %}
+{{ parent() }}
+{% endblock %}   
+
+{% block main %}
+    <!-- EDITEUR -->
+    <form method="POST" class="col-8 offset-2 mt-2" enctype="multipart/form-data">
+        <!-- Editer un titre -->
+        <label class="mt-2" for="titre1">Titre</label>
+        <input type="text" id="titre1" class="form-control" name="titre" value="{{ titre_val }}" required>
+        <!-- Editer une description -->
+        <label class="mt-2" for="descrpt1">Description</label>
+        <input type="text" id="descrpt1" class="form-control" name="descrpt" value="{{ descrpt_val }}" required>
+        <!-- Editer un article -->
+        <label class="mt-2" for="editor1">Article</label>
+        <textarea name="article" id="editor1" rows="10" cols="80">{{ article_val }}</textarea>
+        <script>
+            CKEDITOR.replace( 'editor1', {
+                language: 'fr',
+                uiColor: '#cfdada'
+            });
+        </script>
+        <!-- Categorie -->
+        <label class="mt-2" for="catg">Categorie</label>
+        {% block catg %}
+        <select class="form-control" name="categorie">
+                {{ catg_crea | raw}}
+        </select>
+        {% endblock %} 
+        <!-- Créer un repertoire -->
+        <label class="mt-2" for="dir1">Dossier d'enregistrement des images (en_un_mot)</label>
+        <input type="text" id="dir1" class="form-control" name="url_art" value="{{ url_art_val }}" required>
+        <!-- Uploader des images -->
+        <div class="form-group mt-2">
+            <label for="upload">Ajouter des images</label>
+            <p class="text-danger">{{ msg_error | raw }}</p>
+            <input type="file" multiple id="upload" class="form-control-file" name="fileToUpload[]" required>
+        </div>
+        <button type="submit" class="btn btn-danger mt-2" name="send">Envoyer</button>
+        <a href="index.php" class="btn btn-warning mt-2">Annuler</a>
+    </form>      
+    
+{% endblock %} 
+
+{% block footer %}
+{{ parent() }}
+{% endblock %}    
+
+{% block script %}
+{{ parent() }}
+{% endblock %}

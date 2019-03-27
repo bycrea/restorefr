@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+{{ parent() }}
+<link rel="stylesheet" href="assets/css/error.css">
+{% endblock %}
+
+{% block header %}
+{{ parent() }}
+{% endblock %}   
+
+{% block main %}
+<div class="error">
+  <section class="error-container">
+    <span class="four"><span class="screen-reader-text">4</span></span>
+    <span class="zero"><span class="screen-reader-text">0</span></span>
+    <span class="four"><span class="screen-reader-text">4</span></span>
+  </section>
+  <h1>Désolé, cette page n'existe pas.</h1>
+  <div class="link-container">
+    <a href="index.php" class="more-link">Retour à l'accueil</a>
+  </div>
+</div>
+{% endblock %} 
+
+{% block footer %}
+<footer class="fixed-bottom text-muted">
+    <div class="container">
+        <p class="float-right">
+            <a href="#" class="text-muted">Back to top</a>
+        </p>
+        <p>Webmaster <a href="{{ ii }}login" class="text-muted">yoan despert</a> powered by Bootstrap.</p>
+    </div>
+</footer>
+{% endblock %}    
+
+{% block script %}
+{{ parent() }}
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+{{ parent() }}
+{% endblock %}
+
+{% block header %}
+{{ parent() }}
+{% endblock %}   
+
+{% block main %}
+    <section class="jumbotron text-center">
+        <div class="container">
+            <img src="assets/logos/logo_ban_off.png" alt="logo restore grand" style="width: 100%;">
+            <p class="text-muted font-weight-light">Des objets insolites créés à partir de matériaux recyclés.</p>
+            <h1 class="jumbotron-heading text-hide"><strong>Re-STORE</strong><br>www.restorefr.com</h1>
+            <p class="lead text-muted text-hide">Re-Store c'est une gamme de produits uniques créés à partir de matériaux majoritairement recyclés.<br>
+                    Ici on redonne vie à des objets voués au rebut.<br>
+                    Des créations mêlant ancien & moderne, bois & électronique et tout ce que l'on peut "Re-STORER".<br>Visitez www.restorefr.com
+            </p>
+            {% if admin == 'admin' %}
+            <p>-- ADMIN --</p>
+            <p>
+                <a href="{{ ii }}create" class="btn btn-warning my-2">Ajouter une Créa</a>
+                <a href="#" class="btn btn-warning my-2">Ajouter une News</a>
+            </p>
+                <a href="{{ ii }}logout" class="btn btn-danger">Logout</a>
+            {% endif %}
+        </div>
+    </section>
+
+    <div class="album bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                {% for element in arts_imgs %}
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="card mb-4 shadow-sm">
+                        <a href="{{ ii }}article&id={{ element.id_articles }}">
+                            <img src="{{ element.url_img }}" class="bd-placeholder-img card-img-top" width="100%" height="100%">
+                        </a>
+                        <div class="card-body">
+                            <h6 class="card-text">{{ element.titre }}</h6>
+                            <p class="card-text text-muted font-weight-light">{{ element.descrpt }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="{{ ii }}article&id={{ element.id_articles }}" class="btn btn-sm btn-outline-secondary mx-2">Voir</a>
+                                    {% if admin == 'admin' %}
+                                    <a href="{{ ii }}edit&id={{ element.id_articles }}" class="btn btn-sm btn-warning">Edit.</a>
+                                    <a href="" data-id="{{ element.id_articles }}" data-url_img="{{ element.url_img }}" 
+                                        data-title="{{ element.titre }}" data-type="suppr" data-toggle="modal" data-target="#modaldelete" 
+                                        class="delete btn btn-sm btn-danger">Suppr.
+                                    </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>					
+        </div>
+    </div>
+
+    <!-- Delete form method post -->
+    <div class="modal fade" id="modaldelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form method="POST">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Suppression article</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-image">
+                <img class="modal-img" src="" style="display: block; max-width: 350px; margin: auto;">
+                <div class="modal-body"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="submit" class="btn btn-primary">Supprimer</button>
+                <input type="hidden" name="delete" id="idToDelete" value="" />
+            </div>
+            </div>
+        </div>
+        </form>
+    </div>
+{% endblock %} 
+
+{% block footer %}
+{{ parent() }}
+{% endblock %}    
+
+{% block script %}
+{{ parent() }}
+<script>
+    $(".delete").click(function(){
+        //alert($(this).data('id'));
+        var idElement = $(this).data('id');
+        var url_img = $(this).data('url_img') 
+        var titleElement = $(this).data('title'); 
+        $('.modal-body').text("Souhaitez-vous supprimer " + titleElement + " ?");
+        $('.modal-img').attr("src", url_img);
+        $('#idToDelete').val(idElement);
+    });     
+</script>
+{% endblock %}

@@ -1,0 +1,145 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+{{ parent() }}
+<!-- FONT AWESOME -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<!-- LIGHTBOX GALLERY -->
+<link rel="stylesheet" type="text/css" href="assets/css/lightbox.min.css">
+<script src="assets/js/lightbox-plus-jquery.min.js"></script>
+{% endblock %}
+
+{% block header %}
+{{ parent() }}
+{% endblock %}   
+
+{% block main %}   
+<!-- ORGANISER/SUPPR -->
+<div class="container mt-4">
+    <h3 class="text-center font-italic mt-3">{{ titre_art }}</h3>
+    <form action="{{ ii }}editimages&id={{ id_art }}" method="POST" id="formulaire" class="col-10 offset-1 mt-3">
+        <div class="row align-items-center justify-content-center">
+            {% for key, image in images %}
+            <div class="col-3 p-0 m-1">
+                <a href="{{ image.url_img }}" data-lightbox="gallery">
+                    <img class="imges_art" src="{{ image.url_img }}" alt="{{ titre_art }}">
+                </a>
+                <!-- <input type="text" onchange="suite()" class="form-control" name="{{ (image.mark)-1 }}" value="{{ image.mark }}"> -->
+                {% if image.mark == 1 %}
+                <button type="submit" name="sub_more" class="btn btn-sm btn-warning mt-1" value="{{ image.id_images }}">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <button type="submit" name="sub_end" class="btn btn-sm btn-warning mt-1" value="{{ image.id_images }}">
+                    <i class="fas fa-angle-double-right"></i>
+                </button>
+                <a href="#"  
+                    class="btn btn-sm btn-secondary mt-1 float-right"><strike>Suppr.</strike>
+                </a>
+                {% elseif image.mark == n_img %}
+                <button type="submit" name="sub_begin" class="btn btn-sm btn-warning mt-1" value="{{ image.id_images }}">
+                    <i class="fas fa-angle-double-left"></i>
+                </button>
+                <button type="submit" name="sub_less" class="btn btn-sm btn-warning mt-1" value="{{ image.id_images }}">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <!-- <button type="submit" name="sub_orga" class="btn btn-sm" value="{{ image.mark }}">
+                    <i class="fas fa-arrow-right"></i>
+                </button> -->
+                <a href="" data-id="{{ image.id_images }}" data-url_img="{{ image.url_img }}" data-title="cette image" 
+                    data-type="suppr" data-toggle="modal" data-target="#modaldelete" 
+                    class="delete btn btn-sm btn-danger mt-1 float-right">Suppr.
+                </a>
+                {% else %}
+                <button type="submit" name="sub_begin" class="btn btn-sm btn-warning mt-1" value="{{ image.id_images }}">
+                    <i class="fas fa-angle-double-left"></i>
+                </button>
+                <button type="submit" name="sub_less" class="btn btn-sm btn-warning mt-1" value="{{ image.id_images }}">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <button type="submit" name="sub_more" class="btn btn-sm btn-warning mt-1" value="{{ image.id_images }}">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <button type="submit" name="sub_end" class="btn btn-sm btn-warning mt-1" value="{{ image.id_images }}">
+                    <i class="fas fa-angle-double-right"></i>
+                </button>
+                <a href="" data-id="{{ image.id_images }}" data-url_img="{{ image.url_img }}" data-title="cette image" 
+                    data-type="suppr" data-toggle="modal" data-target="#modaldelete" 
+                    class="delete btn btn-sm btn-danger mt-1 float-right">Suppr.
+                </a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        <!-- <button type="submit" name="sub_orga" id="suivre" class="toast hide btn btn-sm btn-success mt-2">Valider</button> -->
+    </form>
+
+<!-- AJOUTER -->
+    <form method="POST" id="ajout_img" class="col-10 offset-1 mt-4" enctype="multipart/form-data">
+        <div class="form-group mt-2">
+            <p class="text-danger">{{ msg_error | raw }}</p>
+            <label for="images">Ajouter des images</label>
+            <input type="file" multiple id="upload" class="form-control-file" name="fileToUpload[]" required>
+        </div>
+        <button type="submit" name="ajout_img" class="btn btn-sm btn-success mt-2">Envoyer</button>
+        <a href="{{ ii }}article&id={{ id_art }}" class="btn btn-sm btn-warning mt-2">Retour</a>
+    </form>
+</div>
+
+<!-- Delete form method post -->
+<div class="modal fade" id="modaldelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form method="POST">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Suppression image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-image">
+                    <img class="modal-img" src="" style="display: block; max-width: 350px; margin: auto;">
+                    <div class="modal-body"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Supprimer</button>
+                    <input type="hidden" name="delete" id="idToDelete" value="" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %} 
+
+{% block footer %}
+{{ parent() }}
+<!-- LIGHTBOX GALLERY -->
+<script> 
+    lightbox.option({'resizeDuration': 200, 'fadeDuration':200, 'positionFromTop':50})
+</script>
+<!-- Fonction Refresh $_POST -->
+<script type="text/javascript">
+    //fonction javascript simulant l'appui sur un bouton: le formulaire DOIT avoir pour id "formulaire" et le bouton avoi pour id "suivre"
+    function suite ()
+    {
+    //simulation du clic sur l'objet d'id 'suivre'	
+    formulaire.suivre.click();
+    }
+</script>
+<!-- Fonction delete - Pop-up -->
+<script>
+    $(".delete").click(function(){
+        //alert($(this).data('id'));
+        var idElement = $(this).data('id');
+        var url_img = $(this).data('url_img') 
+        var titleElement = $(this).data('title'); 
+        $('.modal-body').text("Souhaitez-vous supprimer " + titleElement + " ?");
+        $('.modal-img').attr("src", url_img);
+        $('#idToDelete').val(idElement);
+    });   
+</script>
+{% endblock %}    
+
+{% block script %}
+{{ parent() }}
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+{{ parent() }}
+<!-- CKEditor -->
+<script src="assets/ckeditor/ckeditor.js"></script>
+{% endblock %}
+
+{% block header %}
+{{ parent() }}
+{% endblock %}   
+
+{% block main %}
+    <!-- EDITEUR -->
+    <form method="POST" class="col-8 offset-2 mt-2" enctype="multipart/form-data">
+        <!-- Editer un titre -->
+        <label class="mt-2" for="titre1">Titre</label>
+        <input type="text" id="titre1" class="form-control" name="titre" value="{{ titre_val }}">
+        <!-- Editer une description -->
+        <label class="mt-2" for="descrpt1">Description</label>
+        <input type="text" id="descrpt1" class="form-control" name="descrpt" value="{{ descrpt_val }}">
+        <!-- Editer un article -->
+        <label class="mt-2" for="editor1">Article</label>
+        <textarea name="article" id="editor1" rows="10" cols="80">{{ article_val }}</textarea>
+        <script>
+            CKEDITOR.replace( 'editor1', {
+                language: 'fr',
+                uiColor: '#cfdada'
+            });
+        </script>
+        <!-- Categorie -->
+        <label class="mt-2" for="catg">Categorie</label>
+        {% block catg %}
+        <select class="form-control" name="categorie">
+                {{ catg_crea | raw}}
+        </select>
+        {% endblock %} 
+        <button type="submit" class="btn btn-danger mt-2">Envoyer</button>
+        <a href="{{ ii }}article&id={{ id_art }}" class="btn btn-warning mt-2">Annuler</a>
+    </form>      
+
+    <!-- ARTICLE -->
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-8 offset-2">
+                    {{ titre_art | raw }}
+                    <div class="card mb-4 shadow-sm">
+                        <div id="carouselExampleIndicators" class="carousel slide card-img-top" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                {{ js_carousel | raw }}                            
+                            </ol>
+                            <div class="carousel-inner">
+                                {{ img_carousel | raw }}
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Back</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                {{ article | raw }}
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="index.php" class="btn btn-sm btn-outline-secondary mt-3 mx-2">Retour</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>					
+        </div>
+    </div>
+{% endblock %} 
+
+{% block footer %}
+{{ parent() }}
+{% endblock %}    
+
+{% block script %}
+{{ parent() }}
+{% endblock %}

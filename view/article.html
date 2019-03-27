@@ -1,0 +1,113 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+{{ parent() }}
+<!-- LIGHTBOX GALLERY -->
+<link rel="stylesheet" type="text/css" href="assets/css/lightbox.min.css">
+<script src="assets/js/lightbox-plus-jquery.min.js"></script>
+{% endblock %}
+
+{% block header %}
+{{ parent() }}
+{% endblock %}   
+
+{% block main %}
+<!-- ARTICLE -->
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-10 offset-1">
+            <h3 class="text-right font-italic">{{ titre_art }}</h3>
+            <div class="card mb-4 shadow-sm">
+                <div class="row">
+                    <div class="col-10 offset-1 p-0 my-4"> 
+                        <a href="{{ mark1 }}" data-lightbox="gallery">
+                            <img class="keymark" src="{{ mark1 }}" alt="{{ titre_art }}">
+                        </a>
+                    </div>
+                </div>
+                <div class="row align-items-center justify-content-center">
+                    <!-- <div class="col-1"></div> -->
+                    {% for key, image in images %}
+                        {% if key > 0 and key < 10 %}
+                        <div class="col-1 p-1 m-0 opc-{{ key }}">
+                            <a href="{{ image.url_img }}" data-lightbox="gallery">
+                                <img class="imges_art" src="{{ image.url_img }}" alt="{{ titre_art }}">
+                            </a>
+                        </div>
+                        {% elseif key >= 10 %}
+                            <div class="col-1 p-1 m-0 toast hide">
+                                <a href="{{ image.url_img }}" data-lightbox="gallery">
+                                    <img class="imges_art" src="{{ image.url_img }}" alt="{{ titre_art }}">
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% endfor %} 
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        {{ article | raw }}
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="index.php" class="btn btn-sm btn-outline-secondary mt-2 mx-2">Retour</a>
+                                {% if admin == 'admin' %}
+                                <a href="{{ ii }}edit&id={{ id_article }}" class="btn btn-sm btn-warning mt-2">Edit.</a>
+                                <a href="{{ ii }}editimages&id={{ id_article }}" class="btn btn-sm btn-success mt-2">Images</a>
+                                <a href="" data-id="{{ id_article }}" data-title="{{ titre_art }}" 
+                                    data-type="suppr" data-toggle="modal" data-target="#modaldelete" 
+                                    class="delete btn btn-sm btn-danger mt-2">Suppr.
+                                </a>
+                                {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>					
+</div>
+
+<!-- Delete form method post -->
+<div class="modal fade" id="modaldelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form method="POST">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Suppression article</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <div class="modal-body">
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="submit" class="btn btn-primary">Supprimer</button>
+                <input type="hidden" name="delete" id="idToDelete" value="" />
+            </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %} 
+
+{% block footer %}
+{{ parent() }}
+{% endblock %}    
+
+{% block script %}
+{{ parent() }}
+<!-- LIGHTBOX GALLERY -->
+<script> 
+    lightbox.option({'resizeDuration': 200, 'fadeDuration':200, 'positionFromTop':50})
+</script>
+<!-- Fonction delete - Pop-up -->
+<script>
+    $(".delete").click(function(){
+        //alert($(this).data('id'));
+        var idElement = $(this).data('id'); 
+        var titleElement = $(this).data('title'); 
+        $('.modal-body').text("Souhaitez-vous supprimer '" + titleElement +"' ?");
+        $('#idToDelete').val(idElement);
+    });    
+</script>
+{% endblock %}
