@@ -1,8 +1,10 @@
 A FAIRE: 
 
+
 - Commenter tout le code (en anglais)
 
 - Ajouter des news
+- Faire la newsletter
 
 - Rajouter des categories
 
