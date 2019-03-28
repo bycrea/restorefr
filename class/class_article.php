@@ -4,9 +4,13 @@
     
         private $_db;
         
-        function __construct($db)
+        function __construct($db = NULL)
         {
-            $this->_db = $db;
+            if($db !== NULL) {
+                $this->_db = $db;
+            } else {
+                $this->_db = $GLOBALS['DB'];
+            }
         }
 
         //Recupère TOUS les articles & images MARK 1

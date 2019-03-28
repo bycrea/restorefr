@@ -5,7 +5,6 @@
     echo $twig->render('create.html', array(
         'title' => "Re-STORE - Création d'aticle",
         'admin' => $_SESSION['status'],
-        'catg_crea' => $catg_crea,
         'msg_error' => $msg_error,
         //Pré-remplissage
         'titre_val' => $titre_val,

@@ -4,9 +4,13 @@
         private $_db;
         private $_fetch;
 
-        function __construct($db)
+        function __construct($db = NULL)
         {
-            $this->_db = $db;
+            if($db !== NULL) {
+                $this->_db = $db;
+            } else {
+                $this->_db = $GLOBALS['DB'];
+            }
         }
 
         //Fonction suppression d'un article et de toutes ses images

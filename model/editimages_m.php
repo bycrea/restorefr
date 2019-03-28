@@ -6,7 +6,7 @@
     $msg_error = "";
 
     //Recpère les informations de article
-    $article = new Article($db);
+    $article = new Article();
     $artId = $article->articleId($id);
 
     //Verifie que l'article existe
@@ -15,7 +15,7 @@
     }
 
     //Recpère les images de article
-    $images = new Images($db);
+    $images = new Images();
     $n_img = $images->imagesCount($id);
     $imgAll = $images->imagesAll($id);
 
@@ -23,7 +23,7 @@
     //Si $_POST['delete'] reçois une ID on supprime l'image concerné
     if(isset($_POST['delete'])) {
         //REMOVE IMAGE
-        $remove = new Remove($db);
+        $remove = new Remove();
         $remove->deleteImage($_POST['delete']);
 
         //On ré-organise les marks des images dans l'ordre croissant
@@ -78,7 +78,7 @@
     //Si $_POST['ajout_img'] est déclaré
     if(isset($_POST['ajout_img'])) {
         //On upload les images dans le dossier image => 'url_art'
-        $upload = new Images($db);
+        $upload = new Images();
         $img_to_db = $upload->uploadImage($artId['url_article'],$_FILES);
         
         if($upload->_n_img == count($img_to_db)) {
@@ -95,7 +95,7 @@
             $msg_error .= $upload->_msg_error;
             $msg_error .= "Veuillez vérifier vos images et recommencer.<br>";
             
-            $rmfile = new Remove($db);
+            $rmfile = new Remove();
             foreach($img_to_db as $image) {
                 $url_file = $image['url_img'].$image['name'];
                 $rmfile->deleteFile($url_file);

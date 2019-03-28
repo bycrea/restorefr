@@ -1,14 +1,16 @@
 <?php
    
     class Categories {
-       private $_id_catg;
-       private $_categorie;
        
        private $_db;
     
-       function __construct($db)
+       function __construct($db = null)
        {
-           $this->_db = $db;
+            if($db !== NULL) {
+                $this->_db = $db;
+            } else {
+                $this->_db = $GLOBALS['DB'];
+            }
        }
 
        // getAll Categories

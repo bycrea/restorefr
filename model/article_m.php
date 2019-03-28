@@ -1,8 +1,9 @@
 <?php
 
     //Recpère les informations de article
-    $article = new Article($db);
+    $article = new Article();
     $artId = $article->articleId($_GET['id']);
+
     //Si l'artcile n'existe pas retour page 404
     if(empty($artId)) {
         header('location: index.php?p=404');
@@ -14,7 +15,7 @@
     //REMOVE ARTICLE
     //Si $_POST['delete'] recois une ID on supprime l'article concerné
     if(isset($_POST['delete'])) {
-        $remove = new Remove($db);
+        $remove = new Remove();
         if($remove->deleteFullArt($_POST['delete'])) {
             header('location: index.php');
         } else {

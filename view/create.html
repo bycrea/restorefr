@@ -32,7 +32,9 @@
         <label class="mt-2" for="catg">Categorie</label>
         {% block catg %}
         <select class="form-control" name="categorie">
-                {{ catg_crea | raw}}
+            {% for catg in catg_drop %}
+            <option value="{{ catg.id_catg }}">{{ catg.categorie }}</option>';
+            {% endfor %}
         </select>
         {% endblock %} 
         <!-- Créer un repertoire -->

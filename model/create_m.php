@@ -1,12 +1,5 @@
 <?php
 
-    // drop-down menu page creation d'article
-    $catg_crea = '';
-    foreach($catgAll as $element) {
-        $catg_crea .='
-        <option value="'.$element['id_catg'].'">'.$element['categorie'].'</option>';
-    }
-
     //Initialisation des variables
     $msg_error = ""; //Concatène les messages d'erreurs (ou succès images)
     //$img_to_db = array(); //Enregistre toutes les données images pour la requète $db
@@ -18,7 +11,7 @@
         $url_art = 'img/'.$_POST['url_art'].'/';
 
         //On upload les images dans le dossier image => 'url_art'
-        $upload = new Images($db);
+        $upload = new Images();
         $img_to_db = $upload->uploadImage($url_art,$_FILES);
 
         //Compare le N° d'images sélectionnées et le N° uplaodés
@@ -27,7 +20,7 @@
             $msg_error = "Images téléchargées.<br>";
 
             //On injecte les données article et images dans la $db
-            $article = new Article($db);
+            $article = new Article();
             $lastId = $article->insertArticle($_POST, $img_to_db);
             
             header('location: index.php?p=article&id='.$lastId);
@@ -35,7 +28,7 @@
             //Sinon on efface toutes les photos (même les valides)
             $msg_error = $upload->_msg_error;
             $msg_error .= "Veuillez vérifier vos images et recommencer.<br>";
-            $rmfile = new Remove($db);
+            $rmfile = new Remove();
             $rmfile->deleteDir($url_art);
 
             //On pré-rempli le formulaire avec les valeurs $_POST envoyé précédement

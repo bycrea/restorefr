@@ -1,6 +1,6 @@
 <?php
     
-    $articles = new Article($db);
+    $articles = new Article();
     
     //$_GET['catg'] permet d'aquerir les articles par catégories dans la $db
     if(isset($_GET['catg'])) {
@@ -15,7 +15,7 @@
     //Si $_POST['delete'] recois une ID on supprime l'article concerné
     if(isset($_POST['delete'])) {
         $id = $_POST['delete'];
-        $remove = new Remove($db);
+        $remove = new Remove();
         if($remove->deleteFullArt($id)) {
             header('location: index.php');
         } else {

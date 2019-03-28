@@ -36,7 +36,12 @@
         <label class="mt-2" for="catg">Categorie</label>
         {% block catg %}
         <select class="form-control" name="categorie">
-                {{ catg_crea | raw}}
+            {% for catg in catg_drop %}
+                {% if creations == catg.categorie %}
+                    <option selected value="{{ catg.id_catg }}">{{ catg.categorie }}</option>';
+                {% endif %}
+            <option value="{{ catg.id_catg }}">{{ catg.categorie }}</option>';
+            {% endfor %}
         </select>
         {% endblock %} 
         <button type="submit" class="btn btn-sm btn-danger mt-2">Valider</button>

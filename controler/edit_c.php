@@ -7,7 +7,6 @@
         'admin' => $_SESSION['status'],
         'creations' => $artId['categorie'],
         //remplissage du formulaire
-        'catg_crea' => $catg_crea,
         'titre_val' => $artId['titre'],
         'descrpt_val' => $artId['descrpt'],
         'article_val' => $artId['article'],

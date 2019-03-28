@@ -1,15 +1,5 @@
 <?php
-    //Error repporting
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
-    
-    //Fonction de Débug
-    function debug($varToDebug){
-        echo '<pre>';
-        print_r($varToDebug);
-        echo '</pre>';
-    }
-    
+
     //Connexion a la base de donnée
     try
     {
@@ -31,8 +21,8 @@
     }
 
     //Menu categories NAVBAR
-    //$catgAll utile pour les pages creation et edit.
-    $catg = new Categories($db);
+    //$catgAll utilisé pour les pages creation et edit.
+    $catg = new Categories();
     $catgAll = $catg->getAllcatg();
     
     //Chargement de Twig
