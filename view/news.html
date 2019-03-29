@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+    <section class="jumbotron text-center">
+        <div class="container">
+            {% if admin == 'admin' %}
+            <p>-- ADMIN --</p>
+            <p>
+                <a href="{{ ii }}create" class="btn btn-warning my-2">Ajouter une Créa</a>
+                <a href="#" class="btn btn-warning my-2">Ajouter une News</a>
+            </p>
+                <a href="{{ ii }}logout" class="btn btn-danger">Logout</a>
+            {% endif %}
+        </div>
+    </section>
+
+    {% if admin == 'admin' %}
+    <!-- Delete form method post -->
+        <div class="modal fade" id="modaldelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form method="POST">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Suppression article</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-image">
+                    <img class="modal-img" src="" style="display: block; max-width: 350px; margin: auto;">
+                    <div class="modal-body"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Supprimer</button>
+                    <input type="hidden" name="delete" id="idToDelete" value="" />
+                </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    {% endif %}
+{% endblock %} 
+
+{% block script %}
+{{ parent() }}
+<script>
+    $(".delete").click(function(){
+        //alert($(this).data('id'));
+        var idElement = $(this).data('id');
+        var url_img = $(this).data('url_img') 
+        var titleElement = $(this).data('title'); 
+        $('.modal-body').text("Souhaitez-vous supprimer " + titleElement + " ?");
+        $('.modal-img').attr("src", url_img);
+        $('#idToDelete').val(idElement);
+    });     
+</script>
+{% endblock %}

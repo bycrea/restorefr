@@ -5,11 +5,7 @@
 <!-- LIGHTBOX GALLERY -->
 <link rel="stylesheet" type="text/css" href="assets/css/lightbox.min.css">
 <script src="assets/js/lightbox-plus-jquery.min.js"></script>
-{% endblock %}
-
-{% block header %}
-{{ parent() }}
-{% endblock %}   
+{% endblock %} 
 
 {% block main %}
 <!-- ARTICLE -->
@@ -90,15 +86,11 @@
 </div>
 {% endblock %} 
 
-{% block footer %}
-{{ parent() }}
-{% endblock %}    
-
 {% block script %}
 {{ parent() }}
 <!-- LIGHTBOX GALLERY -->
 <script> 
-    lightbox.option({'resizeDuration': 200, 'fadeDuration':200, 'positionFromTop':50})
+    lightbox.option({'resizeDuration': 300, 'fadeDuration':300, 'positionFromTop':50})
 </script>
 <!-- Fonction delete - Pop-up -->
 <script>

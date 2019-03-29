@@ -1,13 +1,5 @@
 {% extends 'layout.html' %}
 
-{% block head %}
-{{ parent() }}
-{% endblock %}
-
-{% block header %}
-{{ parent() }}
-{% endblock %}   
-
 {% block main %}
     <section class="jumbotron text-center">
         <div class="container">
@@ -61,35 +53,33 @@
         </div>
     </div>
 
+    {% if admin == 'admin' %}
     <!-- Delete form method post -->
-    <div class="modal fade" id="modaldelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form method="POST">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Suppression article</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
+        <div class="modal fade" id="modaldelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form method="POST">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Suppression article</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-image">
+                    <img class="modal-img" src="" style="display: block; max-width: 350px; margin: auto;">
+                    <div class="modal-body"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Supprimer</button>
+                    <input type="hidden" name="delete" id="idToDelete" value="" />
+                </div>
+                </div>
             </div>
-            <div class="modal-image">
-                <img class="modal-img" src="" style="display: block; max-width: 350px; margin: auto;">
-                <div class="modal-body"></div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                <button type="submit" class="btn btn-primary">Supprimer</button>
-                <input type="hidden" name="delete" id="idToDelete" value="" />
-            </div>
-            </div>
+            </form>
         </div>
-        </form>
-    </div>
+    {% endif %}
 {% endblock %} 
-
-{% block footer %}
-{{ parent() }}
-{% endblock %}    
 
 {% block script %}
 {{ parent() }}

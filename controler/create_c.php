@@ -1,8 +1,11 @@
 <?php
 
-    include('model/create_m.php');
+    //Verifie si le model correspondant au controller existe et l'inclu
+    if(file_exists('model/'.$GLOBALS['p'].'_m.php')) {
+        include('model/'.$GLOBALS['p'].'_m.php');
+    }
     
-    echo $twig->render('create.html', array(
+    echo $twig->render($GLOBALS['p'].'.html', array(
         'title' => "Re-STORE - Création d'aticle",
         'admin' => $_SESSION['status'],
         'msg_error' => $msg_error,

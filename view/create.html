@@ -6,10 +6,6 @@
 <script src="assets/ckeditor/ckeditor.js"></script>
 {% endblock %}
 
-{% block header %}
-{{ parent() }}
-{% endblock %}   
-
 {% block main %}
     <!-- EDITEUR -->
     <form method="POST" class="col-8 offset-2 mt-2" enctype="multipart/form-data">
@@ -51,11 +47,3 @@
     </form>      
     
 {% endblock %} 
-
-{% block footer %}
-{{ parent() }}
-{% endblock %}    
-
-{% block script %}
-{{ parent() }}
-{% endblock %}

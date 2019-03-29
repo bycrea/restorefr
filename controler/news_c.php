@@ -4,12 +4,10 @@
     if(file_exists('model/'.$GLOBALS['p'].'_m.php')) {
         include('model/'.$GLOBALS['p'].'_m.php');
     }
-          
+
     echo $twig->render($GLOBALS['p'].'.html', array(
-        'title' => 'Re-STORE - Bienvenue',
+        'title' => 'Re-STORE - Login',
         'admin' => $_SESSION['status'],
-        'arts_imgs' => $arts_imgs,
-        'creations' => $creations
-        ));
+    ));
 
 ?>

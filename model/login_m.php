@@ -24,7 +24,7 @@
         $req->bindParam(':mail', $mail);
         $req->execute();
         $result = $req->fetch();
-
+        
         //Si l'utilisateur existe
         if($mail == $result['mail']) {
             //Si le mot de passe correspond
