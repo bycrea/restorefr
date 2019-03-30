@@ -1,0 +1,102 @@
+
+.insta_box 
+{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.insta_div 
+{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.insta_post
+{
+	margin: 5px;
+	max-width: 30%;
+	max-height: 50%;
+}
+
+.insta_title  {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+
+	margin-bottom: 10px;
+}
+
+.insta_link 
+{
+	max-width: 100%;
+	color: black;
+}
+.insta_link:hover
+{
+	color: black;
+	text-decoration: none;
+}
+
+.insta_title a {
+	width: 5%;
+}
+
+.insta_user {
+	max-width: 100%;
+	line-height: 0.9;
+	font-weight: lighter;
+	margin: 0px;
+	margin-left: 10px;
+}
+
+.insta_logo
+{
+	width: 100%;
+	border-radius: 50%;
+}
+
+.insta_pics
+{
+	width: 100%;
+}
+
+.insta_caption
+{
+	overflow: auto;
+	width: 100%;
+	min-height: 90px;
+	max-height: 90px;
+}
+.insta_caption i p
+{
+	float: right;
+}
+.insta_caption p
+{
+	font-size: 14px;
+}
+
+@media (max-width: 990px) {
+	
+	.insta_box 
+	{
+		flex-direction: column;
+	}
+	.insta_div 
+	{
+		flex-direction: column;
+	}
+	.insta_post
+	{
+		margin: 5px;
+		max-width: 80%;
+		max-height: 100%;
+	}
+}
+

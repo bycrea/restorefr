@@ -1,58 +1,61 @@
 {% extends 'layout.html' %}
 
+{% block head %}
+{{ parent() }}
+<!-- CSS INSTA -->
+<link rel="stylesheet" href="assets/css/insta.css">
+<!-- FONT AWESOME -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+{% endblock %}
+
 {% block main %}
-    <section class="jumbotron text-center">
-        <div class="container">
-            {% if admin == 'admin' %}
-            <p>-- ADMIN --</p>
-            <p>
-                <a href="{{ ii }}create" class="btn btn-warning my-2">Ajouter une Créa</a>
-                <a href="#" class="btn btn-warning my-2">Ajouter une News</a>
-            </p>
-                <a href="{{ ii }}logout" class="btn btn-danger">Logout</a>
+    <div class="container mt-5 mb-5">
+        <div class="insta_title d-flex justify-content-center">
+            <a href="https://www.instagram.com/restorefrance/" target="_blank" class="insta_link">
+                <img src="assets/logos/logo_restore.jpg" alt="logo instagram restorefrance" class="insta_logo">
+            </a>
+            <p class="insta_user"><a href="https://www.instagram.com/restorefrance/" target="_blank" class="insta_link">
+                <strong>restorefrance</strong>
+            </a><br>sur Instagram</p>
+        </div>
+        <div class="insta_box mt-2">
+            {% if tryCatch == NULL %}
+                <div class="insta_div">
+                    {% for post in insta %}
+                        {% if post.type != 'video' %}
+                            <div class="insta_post img-thumbnail"> 
+                                <div class="insta_pic">
+                                    <a href="{{ post.link }}" target="_blank" class="insta_link">
+                                        <img src="{{ post.images.standard_resolution.url }}" alt="image insta" 
+                                        class="insta_pics">
+                                    </a>
+                                    <div class="insta_caption mt-1">
+                                        <i class="fas fa-heart ml-2"><p>&nbsp;{{ post.likes.count }} j'aimes</p></i>
+                                        <p class="font-weight-lighter">{{ post.caption.text }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-light bg-danger text-center p-5 mt-5">{{ tryCatch | raw }}</p>
             {% endif %}
         </div>
-    </section>
-
-    {% if admin == 'admin' %}
-    <!-- Delete form method post -->
-        <div class="modal fade" id="modaldelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <form method="POST">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Suppression article</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-image">
-                    <img class="modal-img" src="" style="display: block; max-width: 350px; margin: auto;">
-                    <div class="modal-body"></div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                    <button type="submit" class="btn btn-primary">Supprimer</button>
-                    <input type="hidden" name="delete" id="idToDelete" value="" />
-                </div>
-                </div>
-            </div>
-            </form>
-        </div>
-    {% endif %}
+    </div>
 {% endblock %} 
+
+{% block footer %}
+<footer class="text-muted p-2">
+    <div class="container">
+        <p class="float-right">
+            <a href="#" class="text-muted">Back to top</a>
+        </p>
+        <p class="font-weight-lighter">Webnoob <a href="index.php?p=login" class="text-muted">yoan despert</a> powered by Bootstrap.</p>
+    </div>
+</footer>
+{% endblock %}  
 
 {% block script %}
 {{ parent() }}
-<script>
-    $(".delete").click(function(){
-        //alert($(this).data('id'));
-        var idElement = $(this).data('id');
-        var url_img = $(this).data('url_img') 
-        var titleElement = $(this).data('title'); 
-        $('.modal-body').text("Souhaitez-vous supprimer " + titleElement + " ?");
-        $('.modal-img').attr("src", url_img);
-        $('#idToDelete').val(idElement);
-    });     
-</script>
 {% endblock %}

@@ -94,8 +94,8 @@
 </script>
 <!-- Fonction delete - Pop-up -->
 <script>
-    $(".delete").click(function(){
-        //alert($(this).data('id'));
+    $(".delete").click(function(e){
+        // e.preventDefault();
         var idElement = $(this).data('id'); 
         var titleElement = $(this).data('title'); 
         $('.modal-body').text("Souhaitez-vous supprimer '" + titleElement +"' ?");
