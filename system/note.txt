@@ -1,19 +1,16 @@
 A FAIRE: 
 
+- Formulaire de contact (SMTP mail)
 
 - Commenter tout le code (en anglais)
 
-- Ajouter des news
-- Faire la newsletter
+- pouvoir rajouter des categories dans Create
 
-- Rajouter des categories
-
-- Contraindre les Forms pour ne pas rentrer importe quoi (ex : editimage INT /no STING) 
+- Contraindre les Forms pour ne pas rentrer importe quoi
 
 - Ajouter des users (vérification par mail)
 - Contraindre le mail à être un vrai mail
 - Contraindre le password à certains caractères
-
 
 
 API Instagram
