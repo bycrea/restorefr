@@ -118,7 +118,9 @@
 
             //Créer le repertoire pour les photos s'il n'existe pas
             if(!is_dir($url_art)) {
-                mkdir($url_art, 0700, true);
+                $old_mask = umask(0);
+                mkdir($url_art, 0777, true);
+                umask($old_mask);
             }
 
             //Uplaod les images 
