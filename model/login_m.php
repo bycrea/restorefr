@@ -5,10 +5,10 @@
     $pass;
     $msg = '';
 
-    //Si des cookies existent, on prérempli le mail
+    //Si des cookies existent, on prérempli le formulaire de mail
     if (isset($_COOKIE['remember'])) {
         $mail = $_COOKIE['remember'];
-        $msg = "Bienvenue";
+        $msg = "Connecté en tant que ".$_COOKIE['remember'];
     }
 
     //Si $_POST 'login_submit' est déclaré

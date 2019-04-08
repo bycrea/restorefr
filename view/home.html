@@ -10,13 +10,10 @@
                     Ici on redonne vie à des objets voués au rebut.<br>
                     Des créations mêlant ancien & moderne, bois & électronique et tout ce que l'on peut "Re-STORER".<br>Visitez www.restorefr.com
             </p>
-            {% if admin == 'admin' %}
-            <p>-- ADMIN --</p>
-            <p>
+            {% if admin != 'none' %}
+            <p>-- {{ admin | upper }} --</p>
                 <a href="{{ ii }}create" class="btn btn-warning my-2">Ajouter une Créa</a>
-                <a href="#" class="btn btn-warning my-2">Ajouter une News</a>
-            </p>
-                <a href="{{ ii }}logout" class="btn btn-danger">Logout</a>
+                <a href="{{ ii }}logout" class="btn btn-danger">Déconnexion</a>
             {% endif %}
         </div>
     </section>
@@ -81,6 +78,14 @@
     {% endif %}
 {% endblock %} 
 
+{% block footer %}
+<footer class="bottom text-muted p-2">
+    <div class="container">
+        <a href="#" class="text-muted float-right">Haut de page</a>
+        <p class="font-weight-lighter">Webnoob <a href="index.php?p=login" class="text-muted">yoan despert</a></p>
+    </div>
+</footer>
+{% endblock %}
 {% block script %}
 {{ parent() }}
 <script>

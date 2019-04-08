@@ -20,53 +20,54 @@
                 <a href="{{ image.url_img }}" data-lightbox="gallery">
                     <img class="imges_art" src="{{ image.url_img }}" alt="{{ titre_art }}">
                 </a>
-                <!-- <input type="text" onchange="suite()" class="form-control" name="{{ (image.mark)-1 }}" value="{{ image.mark }}"> -->
                 {% if image.mark == 1 %}
-                <button type="submit" name="sub_more" class="btn btn-sm btn-warning mt-1" value="{{ image.id_images }}">
-                    <i class="fas fa-arrow-right"></i>
-                </button>
-                <button type="submit" name="sub_end" class="btn btn-sm btn-warning mt-1" value="{{ image.id_images }}">
-                    <i class="fas fa-angle-double-right"></i>
-                </button>
-                <a href="#"  
-                    class="btn btn-sm btn-secondary mt-1 float-right"><strike>Suppr.</strike>
-                </a>
+                    <button type="submit" name="sub_more" class="btn btn-sm btn-warning mt-1" value="{{ image.id_images }}">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <button type="submit" name="sub_end" class="btn btn-sm btn-warning mt-1" value="{{ image.id_images }}">
+                        <i class="fas fa-angle-double-right"></i>
+                    </button>
+                    {% if admin == 'admin' %}
+                        <a href="#"  
+                            class="btn btn-sm btn-secondary mt-1 float-right"><strike>Suppr.</strike>
+                        </a>
+                    {% endif %}
                 {% elseif image.mark == n_img %}
-                <button type="submit" name="sub_begin" class="btn btn-sm btn-warning mt-1" value="{{ image.id_images }}">
-                    <i class="fas fa-angle-double-left"></i>
-                </button>
-                <button type="submit" name="sub_less" class="btn btn-sm btn-warning mt-1" value="{{ image.id_images }}">
-                    <i class="fas fa-arrow-left"></i>
-                </button>
-                <!-- <button type="submit" name="sub_orga" class="btn btn-sm" value="{{ image.mark }}">
-                    <i class="fas fa-arrow-right"></i>
-                </button> -->
-                <a href="" data-id="{{ image.id_images }}" data-url_img="{{ image.url_img }}" data-title="cette image" 
-                    data-type="suppr" data-toggle="modal" data-target="#modaldelete" 
-                    class="delete btn btn-sm btn-danger mt-1 float-right">Suppr.
-                </a>
+                    <button type="submit" name="sub_begin" class="btn btn-sm btn-warning mt-1" value="{{ image.id_images }}">
+                        <i class="fas fa-angle-double-left"></i>
+                    </button>
+                    <button type="submit" name="sub_less" class="btn btn-sm btn-warning mt-1" value="{{ image.id_images }}">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    {% if admin == 'admin' %}
+                        <a href="" data-id="{{ image.id_images }}" data-url_img="{{ image.url_img }}" data-title="cette image" 
+                            data-type="suppr" data-toggle="modal" data-target="#modaldelete" 
+                            class="delete btn btn-sm btn-danger mt-1 float-right">Suppr.
+                        </a>
+                    {% endif %}
                 {% else %}
-                <button type="submit" name="sub_begin" class="btn btn-sm btn-warning mt-1" value="{{ image.id_images }}">
-                    <i class="fas fa-angle-double-left"></i>
-                </button>
-                <button type="submit" name="sub_less" class="btn btn-sm btn-warning mt-1" value="{{ image.id_images }}">
-                    <i class="fas fa-arrow-left"></i>
-                </button>
-                <button type="submit" name="sub_more" class="btn btn-sm btn-warning mt-1" value="{{ image.id_images }}">
-                    <i class="fas fa-arrow-right"></i>
-                </button>
-                <button type="submit" name="sub_end" class="btn btn-sm btn-warning mt-1" value="{{ image.id_images }}">
-                    <i class="fas fa-angle-double-right"></i>
-                </button>
-                <a href="" data-id="{{ image.id_images }}" data-url_img="{{ image.url_img }}" data-title="cette image" 
-                    data-type="suppr" data-toggle="modal" data-target="#modaldelete" 
-                    class="delete btn btn-sm btn-danger mt-1 float-right">Suppr.
-                </a>
+                    <button type="submit" name="sub_begin" class="btn btn-sm btn-warning mt-1" value="{{ image.id_images }}">
+                        <i class="fas fa-angle-double-left"></i>
+                    </button>
+                    <button type="submit" name="sub_less" class="btn btn-sm btn-warning mt-1" value="{{ image.id_images }}">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <button type="submit" name="sub_more" class="btn btn-sm btn-warning mt-1" value="{{ image.id_images }}">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <button type="submit" name="sub_end" class="btn btn-sm btn-warning mt-1" value="{{ image.id_images }}">
+                        <i class="fas fa-angle-double-right"></i>
+                    </button>
+                    {% if admin == 'admin' %}
+                        <a href="" data-id="{{ image.id_images }}" data-url_img="{{ image.url_img }}" data-title="cette image" 
+                            data-type="suppr" data-toggle="modal" data-target="#modaldelete" 
+                            class="delete btn btn-sm btn-danger mt-1 float-right">Suppr.
+                        </a>
+                    {% endif %}
                 {% endif %}
             </div>
             {% endfor %}
         </div>
-        <!-- <button type="submit" name="sub_orga" id="suivre" class="toast hide btn btn-sm btn-success mt-2">Valider</button> -->
     </form>
 
 <!-- AJOUTER -->

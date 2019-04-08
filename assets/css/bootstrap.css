@@ -1820,6 +1820,10 @@ pre code {
   .table-responsive-sm > .table-bordered {
     border: 0;
   }
+  .logo_nav
+  {
+    display: none !important;
+  }
 }
 
 @media (max-width: 767.98px) {

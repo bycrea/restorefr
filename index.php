@@ -2,7 +2,7 @@
 
     //Start $_SESSION
     session_start();
-    
+
     //Load system/init.php
     require('system/init.php');
     
@@ -27,6 +27,7 @@
             'title' => 'Re-STORE - Erreur serveur',
             'admin' => $_SESSION['status']
         ));
+        
     } else { 
         //Si $_GET['p'] n'eexiste pas : erreur 404
         echo $twig->render('error_404.html', array(

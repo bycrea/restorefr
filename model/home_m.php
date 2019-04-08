@@ -1,7 +1,7 @@
 <?php
     
     $articles = new Article();
-    
+
     //$_GET['catg'] permet d'aquerir les articles par catégories dans la $db
     if(isset($_GET['catg'])) {
         $arts_imgs = $articles->articlesCatg($_GET['catg']);
