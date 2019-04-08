@@ -22,7 +22,6 @@
                     </div>
                 </div>
                 <div class="row align-items-center justify-content-center">
-                    <!-- <div class="col-1"></div> -->
                     {% for key, image in images %}
                         {% if key > 0 and key < 10 %}
                         <div class="col-1 p-1 m-0 opc-{{ key }}">
@@ -31,11 +30,11 @@
                             </a>
                         </div>
                         {% elseif key >= 10 %}
-                            <div class="col-1 p-1 m-0 toast hide">
-                                <a href="{{ image.url_img }}" data-lightbox="gallery">
-                                    <img class="imges_art" src="{{ image.url_img }}" alt="{{ titre_art }}">
-                                </a>
-                            </div>
+                        <div class="col-1 p-1 m-0 toast hide">
+                            <a href="{{ image.url_img }}" data-lightbox="gallery">
+                                <img class="imges_art" src="{{ image.url_img }}" alt="{{ titre_art }}">
+                            </a>
+                        </div>
                         {% endif %}
                     {% endfor %} 
                 </div>

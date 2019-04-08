@@ -13,7 +13,8 @@
         'titre_val' => $titre_val,
         'descrpt_val' => $descrpt_val,
         'article_val' => $article_val,
-        'url_art_val' => $url_art_val
+        'url_art_val' => $url_art_val,
+        'catg_crea' => $catg_crea
     ));
 
 ?>

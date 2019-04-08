@@ -3,7 +3,7 @@
     //Initialisation des variables
     $msg_error = ""; //Concatène les messages d'erreurs (ou succès images)
     //$img_to_db = array(); //Enregistre toutes les données images pour la requète $db
-    $titre_val = $descrpt_val = $article_val = $url_art_val = ""; //Mémorise les champs 'form' en cas d'échecs
+    $titre_val = $descrpt_val = $article_val = $url_art_val = $catg_crea = NULL; //Mémorise les champs 'form' en cas d'échecs
 
     //Si $_POST n'est pas vide
     if(isset($_POST['send'])) {
@@ -38,7 +38,6 @@
             $url_art_val = $_POST['url_art'];
 
             //Re-selection de la catégorie choisi en $_POST en rajoutant un 'selected' sur celle-ci
-            $catg_crea = "";
             foreach($catgAll as $element) {
                 if($_POST['categorie'] == $element['id_catg']) {
                     $catg_crea .='
