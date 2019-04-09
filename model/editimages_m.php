@@ -20,7 +20,7 @@
     $imgAll = $images->imagesAll($id);
 
 
-    //Si $_POST['delete'] reçois une ID on supprime l'image concerné
+    // Si $_POST['delete'] reçois une ID on supprime l'image concerné
     if(isset($_POST['delete'])) {
         //REMOVE IMAGE
         $remove = new Remove();
@@ -33,7 +33,7 @@
         header('location: index.php?p=editimages&id='.$id);
     }
 
-    //Si $_POST['sub_begin'] est déclaré
+    // Si $_POST['sub_begin'] est déclaré
     if(isset($_POST['sub_begin'])) {
         //Décrémente la Mark de l'image séléctionné 
         $idImg = $_POST['sub_begin'];
@@ -43,7 +43,7 @@
         
         header('location: index.php?p=editimages&id='.$id);
     }
-    //Si $_POST['sub_less'] est déclaré
+    // Si $_POST['sub_less'] est déclaré
     if(isset($_POST['sub_less'])) {
         //Décrémente la Mark de l'image séléctionné 
         $idImg = $_POST['sub_less'];
@@ -53,7 +53,7 @@
         
         header('location: index.php?p=editimages&id='.$id);
     }
-    //Si $_POST['sub_more'] est déclaré
+    // Si $_POST['sub_more'] est déclaré
     if(isset($_POST['sub_more'])) {
         //Incrément la Mark de l'image séléctionné 
         $idImg = $_POST['sub_more'];
@@ -63,7 +63,7 @@
 
         header('location: index.php?p=editimages&id='.$id);
     }
-    //Si $_POST['sub_end'] est déclaré
+    // Si $_POST['sub_end'] est déclaré
     if(isset($_POST['sub_end'])) {
         //Incrément la Mark de l'image séléctionné 
         $idImg = $_POST['sub_end'];
@@ -74,24 +74,23 @@
         header('location: index.php?p=editimages&id='.$id);
     }
 
-
-    //Si $_POST['ajout_img'] est déclaré
+    // Si $_POST['ajout_img'] est déclaré
     if(isset($_POST['ajout_img'])) {
-        //On upload les images dans le dossier image => 'url_art'
+        // On upload les images dans le dossier image => 'url_art'
         $upload = new Images();
         $img_to_db = $upload->uploadImage($artId['url_article'],$_FILES);
         
         if($upload->_n_img == count($img_to_db)) {
-            //Si tout est OK
+            // Si tout est OK
             $msg_error = "Images téléchargées.<br>";
 
-            //On injecte les images dans la $db
+            // On injecte les images dans la $db
             $images->insertImg($id, $img_to_db);
             $images->imagesOrga($id);
 
             header('location: index.php?p=editimages&id='.$id);
         } else {
-            //Sinon on efface toutes les nouvelles photos (même les valides)
+            // Sinon on efface toutes les nouvelles photos (même les valides)
             $msg_error .= $upload->_msg_error;
             $msg_error .= "Veuillez vérifier vos images et recommencer.<br>";
             

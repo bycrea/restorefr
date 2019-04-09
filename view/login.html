@@ -4,11 +4,13 @@
 <div class="container"></div>
     <div class="row" style="margin: 0px;">
         <form class="col-4 offset-4 pt-5" method="POST">
+            <!-- Si la $_SESSION est ouverte on affiche un message et on empêche la reconnexion -->
             {% if admin != 'none' %}
-                <p class="font-weight-bolder text-danger">{{ message }}</p>
+                <p class="font-weight-bolder text-danger">Connecté en tant que {{ mail }}</p>
                 <a href="{{ ii }}change" class="btn btn-warning">Changer d'utilisateur</a>
                 <a href="{{ ii }}logout" class="btn btn-danger">Déconnexion</a>
             {% else %}
+            <!-- Sinon on affiche le formulaire de login -->
             <p class="font-weight-bolder text-danger">{{ message }}</p>
             <div class="form-group">
                 <label for="exampleInputEmail1">Mail</label>

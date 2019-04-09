@@ -9,7 +9,7 @@
         'title' => 'Re-STORE - Login',
         'admin' => $_SESSION['status'],
         'mail' => $mail,
-        'message' => $msg
+        'message' => $msg_error
     ));
 
 ?>

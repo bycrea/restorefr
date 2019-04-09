@@ -1,19 +1,19 @@
 <?php
 
-    //Recpère les informations de article
+    // Recpère les informations de article
     $article = new Article();
     $artId = $article->articleId($_GET['id']);
 
-    //Si l'artcile n'existe pas retour page 404
+    // Si l'artcile n'existe pas retour page 404
     if(empty($artId)) {
         header('location: index.php?p=404');
     }
 
-    //Recpère les images de article
-    $imgId = $article->imagesId($_GET['id']);
+    // Recpère les images de article
+    $images = new Images();
+    $imgAll = $images->imagesAll($_GET['id']);
 
-
-    //Si l'article est modifié, on récupère les données en $_POST
+    // Si l'article est modifié, on récupère les données en $_POST
     if(!empty($_POST)) {
         $update = new Article();
         $update->updateArticle($artId['id_articles']);

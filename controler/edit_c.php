@@ -18,7 +18,7 @@
         'titre_art' => $artId['titre'],
         'article' => $artId['article'],
         'mark1' => $artId['url_img'],
-        'images' => $imgId
+        'images' => $imgAll
     ));
 
 ?>

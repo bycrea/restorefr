@@ -13,7 +13,7 @@
             }
         }
 
-        //Recupère TOUS les articles & images MARK 1
+        // Recupère TOUS les articles & images MARK 1
         public function articlesAll()
         {
             $req = $this->_db->prepare('SELECT art.id_articles, art.titre, art.descrpt, art.url_article, art.id_catg, cat.categorie, img.url_img
@@ -37,7 +37,7 @@
             return $req->fetchAll();
         }
 
-        //Recupère UN article & image MARK 1 par ID
+        // Recupère UN article & image MARK 1 par ID
         public function articleId($id)
         {
             $req = $this->_db->prepare('SELECT art.id_articles, art.titre, art.descrpt, art.article, art.url_article, art.id_catg, cat.categorie, img.url_img
@@ -49,19 +49,8 @@
             $req->execute();
             return $req->fetch();
         }
-
-        //Recupère toutes les images liées à un article
-        public function imagesId($id) 
-        {
-            $req = $this->_db->prepare('SELECT id_images, url_img, mark FROM images
-                                        WHERE id_articles = :id
-                                        ORDER BY mark;');
-            $req->bindParam(':id', $id);
-            $req->execute();
-            return $req->fetchAll();
-        }
             
-        //INSERT article dans la $db
+        // INSERT article dans la $db
         public function insertArticle($article, $img_to_db) 
         {
             $req = $this->_db->prepare('INSERT INTO articles
@@ -76,10 +65,10 @@
                 ':id_catg' => $article['categorie']
             ));
 
-            //Recupère l'ID du dernier INSERT
+            // Recupère l'ID du dernier INSERT
             $lastId = $this->_db->lastInsertId();
             
-            //INSERT images de "last article" dans la $db
+            // INSERT images de "lastId article" dans la $db
             $n_img = count($img_to_db);
             for ($i=0; $i < $n_img; $i++) {
                 $req = $this->_db->prepare('INSERT INTO images
@@ -96,8 +85,7 @@
             return $lastId;
         }
 
-
-        //UPDATE article dans la $db
+        // UPDATE article dans la $db
         public function updateArticle($id) 
         {
             $req = $this->_db->prepare('UPDATE articles

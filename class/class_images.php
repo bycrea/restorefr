@@ -31,12 +31,12 @@
 
 
         //Recupère toutes les images liées à un article
-        public function imagesAll($id) 
+        public function imagesAll($idArt) 
         {
             $req = $this->_db->prepare('SELECT mark, url_img, id_images FROM images
                                         WHERE id_articles = :id
                                         ORDER BY mark;');
-            $req->bindParam(':id', $id);
+            $req->bindParam(':id', $idArt);
             $req->execute();
             return $req->fetchAll();
         }
