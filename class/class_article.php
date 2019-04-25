@@ -6,6 +6,7 @@
         
         function __construct($db = NULL)
         {
+            // On instancie la Class avec en paramètre l'objet 'PDO'
             if($db !== NULL) {
                 $this->_db = $db;
             } else {
@@ -13,10 +14,11 @@
             }
         }
 
-        // Recupère TOUS les articles & images MARK 1
+        // Recupère TOUS les articles & images ayant MARK = 1
         public function articlesAll()
         {
-            $req = $this->_db->prepare('SELECT art.id_articles, art.titre, art.descrpt, art.url_article, art.id_catg, cat.categorie, img.url_img
+            $req = $this->_db->prepare('SELECT art.id_articles, art.titre, art.descrpt, art.url_article, 
+                                                art.id_catg, cat.categorie, img.url_img
                                         FROM articles art 
                                         JOIN categories cat ON cat.id_catg = art.id_catg
                                         JOIN images img ON art.id_articles = img.id_articles
