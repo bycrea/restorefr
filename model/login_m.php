@@ -8,7 +8,7 @@
         $mail = $_COOKIE['remember'];
     }
 
-    // Si $_POST 'login_submit' est déclaré
+    // Si $_POST['login_submit'] est défini
     if(isset($_POST['login_submit'])) {
         $mail = $_POST['mail'];
         $pass = $_POST['password'];
