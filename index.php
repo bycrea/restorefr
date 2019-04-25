@@ -21,7 +21,7 @@
         $_GET['p'] = 'home';
     }
     
-    // Si la page correspondante au $_GET['p'] existe on inclu son controler
+    // Si la page correspondante au $_GET['p'] existe on inclu son 'controller'
     if(file_exists('controler/'.$_GET['p'].'_c.php')) {
 
         $GLOBALS['p'] = $_GET['p'];
@@ -42,7 +42,7 @@
             'title' => 'Re-STORE - erreur 404',
             'admin' => $_SESSION['status']
         ));
-        
+
     }
 
 ?>
