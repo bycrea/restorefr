@@ -27,6 +27,7 @@
             return $req->fetchAll();
         }
 
+        // Recupère les articles & images de la catégorie en paramètre
         public function articlesCatg($catg)
         {
             $req = $this->_db->prepare('SELECT art.id_articles, art.titre, art.descrpt, art.url_article, art.id_catg, cat.categorie, img.url_img
