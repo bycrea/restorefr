@@ -32,7 +32,7 @@
             'admin' => $_SESSION['status']
         ));
     } else { 
-        // Si $_GET['p'] n'eexiste pas : erreur 404
+        // Si $_GET['p'] n'existe pas : erreur 404
         echo $twig->render('error_404.html', array(
             'title' => 'Re-STORE - erreur 404',
             'admin' => $_SESSION['status']
