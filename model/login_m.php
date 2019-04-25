@@ -14,7 +14,7 @@
         // On enregistre les variables $_POST dans de nouvelles variables
         $mail = $_POST['mail'];
         $pass = $_POST['password'];
-        
+
         // Recupère les informations de l'utilisateur en base de donnée
         $req = $db->prepare('SELECT * FROM users 
                             INNER JOIN status ON users.status_id_status = status.id_status
@@ -26,13 +26,17 @@
         
         // Si l'utilisateur existe
         if($mail == $result['mail']) {
+
             // Si le mot de passe correspond
             if(password_verify($pass, $result['password'])) {
+
                 // Si 'remenber' est spécifié
                 if(isset($_POST['remember'])) {
+
                     // Enregistre un coockie pour un mois
                     setcookie("remember",$result['mail'],time() + (86400*30));  //(86400 * 30) = 1mois
                 } else {
+
                     // Enregistre un coockie jusqu'a ce que l'explorateur soit fermé
                     setcookie("remember", $result['mail']);
                 }
@@ -42,12 +46,17 @@
                 $_SESSION['mail'] = $mail;
 
                 header('location: index.php');
+
             } else {
+
                 // Si le mot de pas est incorrect
                 $msg_error = 'mot de passe incorrect';
             }
+
+        // Si le mail n'est pas reconnu
         } else {
-            // Si le mail n'est pas reconnu
+            
+            // On renvoie un message d'erreur
             $msg_error = 'mail inconnu';
             $mail = '';
         }
