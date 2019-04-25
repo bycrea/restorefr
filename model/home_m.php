@@ -1,18 +1,25 @@
 <?php
-    
+
+    //--- AFFICHAGE DES ARTICLES ---//
+
+    // On instancie la class Article
     $articles = new Article();
 
-    //$_GET['catg'] permet d'aquerir les articles par catégories dans la $db
+    // Si $_GET['catg'] est défini
+    // On appel la méthode 'articlesCatg()' avec en paramètre la catégorie correspondante
     if(isset($_GET['catg'])) {
         $arts_imgs = $articles->articlesCatg($_GET['catg']);
         $creations = $catgAll[($_GET['catg']-1)]['categorie'];
+
+    // Sinon on charge tous les articles avec la méthode 'articlesAll()'
     } else {
         $arts_imgs = $articles->articlesAll();
         $creations = "Les Créations";
     }
     
-    //REMOVE ARTICLE
-    //Si $_POST['delete'] recois une ID on supprime l'article concerné
+    //--- SUPPRSSION D'UN ARTICLE ---//
+
+    // Si $_POST['delete'] recois une ID on supprime l'article concerné
     if(isset($_POST['delete'])) {
         $id = $_POST['delete'];
         $remove = new Remove();
