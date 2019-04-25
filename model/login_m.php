@@ -10,10 +10,12 @@
 
     // Si $_POST['login_submit'] est défini
     if(isset($_POST['login_submit'])) {
+
+        // On enregistre les variables $_POST dans de nouvelles variables
         $mail = $_POST['mail'];
         $pass = $_POST['password'];
-
-        // Recupère les informations de l'utilisateur
+        
+        // Recupère les informations de l'utilisateur en base de donnée
         $req = $db->prepare('SELECT * FROM users 
                             INNER JOIN status ON users.status_id_status = status.id_status
                             WHERE mail=:mail
