@@ -53,7 +53,7 @@
             return $req->fetch();
         }
             
-        // INSERT article dans la $db
+        // CREATE article dans la $db
         public function insertArticle($article, $img_to_db) 
         {
             $req = $this->_db->prepare('INSERT INTO articles

@@ -53,12 +53,15 @@
 				</a>
 				<div class="row">
 					<div class="dropdown col-10">
+						{# bouton dropdrown / La variable twig 'creations' affiche le nom de la catégorie #}
 						<button class="btn btn-sm btn-outline-light dropdown-toggle mt-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							{{ creations }}
 						</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							{# ?p=home : Retourne toutes les articles #}
 							<a class="dropdown-item" href="{{ ii }}home">Toutes</a>
 							{% for catg in catg_drop %}
+							{# home&catg={{ catg.id_catg |e }} Retourne les articles d'une catégorie #}
 							<a class="dropdown-item" href="{{ ii }}home&catg={{ catg.id_catg |e }}">{{ catg.categorie |e }}</a>
 							{% endfor %}
 						</div>

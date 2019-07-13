@@ -9,16 +9,14 @@
         'title' => "Re-STORE - Edition d'aticle",
         'admin' => $_SESSION['status'],
         'creations' => $artId['categorie'],
-        //remplissage du formulaire
+        // Remplissage du formulaire et Article
         'titre_val' => $artId['titre'],
         'descrpt_val' => $artId['descrpt'],
         'article_val' => $artId['article'],
         'id_art' => $artId['id_articles'],
-        //variable article preview
-        'titre_art' => $artId['titre'],
-        'article' => $artId['article'],
+        // Variables Images
         'mark1' => $artId['url_img'],
         'images' => $imgAll
     ));
-
+    
 ?>

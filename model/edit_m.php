@@ -1,6 +1,6 @@
 <?php
 
-    // Recpère les informations de article
+    // Recpère les informations de l'article passé en $_GET
     $article = new Article();
     $artId = $article->articleId($_GET['id']);
 
@@ -9,7 +9,7 @@
         header('location: index.php?p=404');
     }
 
-    // Recpère les images de article
+    // Recpère les images de l'article
     $images = new Images();
     $imgAll = $images->imagesAll($_GET['id']);
 

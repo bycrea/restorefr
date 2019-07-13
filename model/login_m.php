@@ -30,14 +30,14 @@
             // Si le mot de passe correspond
             if(password_verify($pass, $result['password'])) {
 
-                // Si 'remenber' est spécifié
+                // Si 'se souvenir' est coché : 'remenber' est défini
                 if(isset($_POST['remember'])) {
 
-                    // Enregistre un coockie pour un mois
+                    // Enregistre un cookie pour une durée d'un mois
                     setcookie("remember",$result['mail'],time() + (86400*30));  //(86400 * 30) = 1mois
                 } else {
 
-                    // Enregistre un coockie jusqu'a ce que l'explorateur soit fermé
+                    // Enregistre un cookie jusqu'a ce que l'explorateur soit fermé
                     setcookie("remember", $result['mail']);
                 }
                 
